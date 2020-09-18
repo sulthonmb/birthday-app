@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -12,13 +12,13 @@ module.exports = {
       allowNull: false,
       type: Sequelize.DATE,
       defaultValue: Sequelize.fn('NOW')
-    });
+    })
 
     await queryInterface.addColumn('product', 'updated_at', {
       allowNull: false,
       type: Sequelize.DATE,
       defaultValue: Sequelize.fn('NOW')
-    });
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -31,4 +31,4 @@ module.exports = {
     await queryInterface.removeColumn('product', 'created_at')
     await queryInterface.removeColumn('product', 'updated_at')
   }
-};
+}

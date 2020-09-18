@@ -1,23 +1,21 @@
-import express from 'express';
-import 'babel-polyfill';
-import cors from 'cors';
-import env from './env';
-import adminRoutes from './app/routes/adminRoutes';
-import userTypes from './app/routes/userTypesRoutes';
+import 'babel-polyfill'
+import env from './env'
+import app from './app'
+import http from 'http'
+import clusterLoader from './app/config/cluster'
+import cluster from 'cluster'
 
-const app = express();
+const setupServer = (isClusterRequired) => {
+  // if it is a master process then call setting up worker process
+  if (isClusterRequired && cluster.isMaster) {
+    clusterLoader()
+  } else {
+    // to setup server configurations and share port address for incoming requests
+    app.server = http.createServer(app)
+    app.listen(env.port, () => console.log(`Listening on port: ${env.port}, Worker ${cluster.worker.process.pid}`))
+  }
+}
 
-// Add middleware for parsing URL encoded bodies (which are usually sent by browser)
-app.use(cors());
-// Add middleware for parsing JSON and urlencoded data and populating `req.body`
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+setupServer(true)
 
-app.use('/api/v1', adminRoutes);
-app.use('/api/v1', userTypes);
-
-app.listen(env.port).on('listening', () => {
-  console.log(`🚀 are live on ${env.port}`);
-});
-
-export default app;
+module.exports = app

@@ -1,4 +1,4 @@
-import pool from '../config/database';
+import pool from '../config/database'
 
 export default {
   /**
@@ -7,15 +7,15 @@ export default {
    * @param {object} res
    * @returns {object} object
    */
-  query(quertText, params) {
+  query (quertText, params) {
     return new Promise((resolve, reject) => {
       pool.query(quertText, params)
         .then((res) => {
-          resolve(res);
+          resolve(res)
         })
         .catch((err) => {
-          reject(err);
-        });
-    });
-  },
-};
+          reject(err)
+        })
+    })
+  }
+}

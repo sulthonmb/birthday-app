@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -8,7 +8,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('product', { 
+    await queryInterface.createTable('product', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,17 +17,17 @@ module.exports = {
       },
       photo_product: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
       name_product: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: true
       },
       price_product: {
         type: Sequelize.STRING,
-        allowNull: true,
-      },
-    });
+        allowNull: true
+      }
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -37,6 +37,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('product');
+    await queryInterface.dropTable('product')
   }
-};
+}

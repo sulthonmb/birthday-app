@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -11,25 +11,25 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
       phone_number: {
         type: Sequelize.STRING,
         primaryKey: false,
-        allowNull: true,
+        allowNull: true
       },
       gender: {
         type: Sequelize.STRING,
         primaryKey: false,
-        allowNull: true,
+        allowNull: true
       },
       id_user_type: {
         type: Sequelize.INTEGER,
@@ -37,9 +37,9 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'user_types',
-          key: 'id',
+          key: 'id'
         },
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       created_at: {
         allowNull: false,
@@ -51,10 +51,10 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('NOW')
       }
-    });
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('users')
   }
-};
+}
