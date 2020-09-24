@@ -96,6 +96,7 @@
     "lint": "eslint --fix --ignore-path .gitignore .",
     "pretest": "cross-env NODE_ENV=test npm run lint && npm run migrate-reset && npm run migrate && npm run seed-all",
     "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=10000 --forceExit",
+    "test-app": "cross-env NODE_ENV=test jest --coverage --testTimeout=10000 --forceExit",
     "start": "nodemon --watch . --exec babel-node -- server",
     "setup": "npm-run-all -p start migrate"
   },

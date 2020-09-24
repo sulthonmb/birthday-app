@@ -1,0 +1,64 @@
+version: '3'
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+    image: node:12.4.0-alpine
+    container_name: app
+    restart: always
+    depends_on:
+     - db
+     - redis
+    environment:
+      - NODE_ENV=production
+      - PORT=3006
+      - PGHOST=db
+      - PGPORT=5432
+      - PGDATABASE=gaali_service_users
+      - PGUSER=gaali_admin
+      - PGPASSWORD=blog)r2020
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ROUND_SALT=8
+      - API_KEY=****
+      - SECRET=s*#P+3asb*t*WMu?A&UX7%#LgQz$cA+XYnMu3vFYsJda!L@%9*sVcLZu_-Zv
+      - USER_DOCS=gaali_docs
+      - PASS_DOCS=jog@2020
+      - EXPOSE_PORT=3009
+    ports:
+      - "3009:3006"
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    networks:
+      - app-network
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+    ports:
+      - "5444:5432"
+    environment:
+      POSTGRES_PASSWORD: gaali_admin
+      POSTGRES_USER: blog)r2020
+      POSTGRES_DB: gaali_service_users
+    networks:
+      - app-network  
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6333:6379"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  database-data:
+  node_modules:  

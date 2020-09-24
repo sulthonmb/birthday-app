@@ -2,10 +2,10 @@ import redis from '../../../app/config/redis'
 const request = require('supertest')
 const app = require('../../../app')
 
-let token
-let idUserTypes
-
 describe('User Types', () => {
+  let token
+  let idUserTypes
+
   afterAll(async () => await redis.close())
 
   it('should success to sign in', async () => {

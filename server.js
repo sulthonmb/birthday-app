@@ -12,7 +12,7 @@ const setupServer = (isClusterRequired) => {
   } else {
     // to setup server configurations and share port address for incoming requests
     app.server = http.createServer(app)
-    app.listen(env.port, () => console.log(`Listening on port: ${env.port}, Worker ${cluster.worker.process.pid}`))
+    app.listen(env.port, () => console.log(`Listening on port: ${env.expose_port}, Worker ${cluster.worker.process.pid}`))
   }
 }
 

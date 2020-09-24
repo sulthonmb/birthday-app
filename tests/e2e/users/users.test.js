@@ -1,10 +1,10 @@
 const request = require('supertest')
 const app = require('../../../app')
 
-let token
-let idUsers
-
 describe('Users', () => {
+  let token
+  let idUsers
+
   it('should success to sign in', async () => {
     const res = await request(app)
       .post('/api/v1/admin/signin')

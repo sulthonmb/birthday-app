@@ -15,5 +15,6 @@ module.exports = {
   redis_port: process.env.REDIS_PORT,
   round_salt: process.env.ROUND_SALT,
   user_docs: process.env.USER_DOCS,
-  pass_docs: process.env.PASS_DOCS
+  pass_docs: process.env.PASS_DOCS,
+  expose_port: process.env.EXPOSE_PORT
 }
