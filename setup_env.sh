@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo API_URL=$API_URL >> .env
-echo NODE_ENV=$NODE_ENV >> .env
 echo NODE_ENV=$NODE_ENV_TEST >> .env
 echo SECRET=$SECRET_TEST >> .env
 echo PORT=$PORT_TEST >> .env
