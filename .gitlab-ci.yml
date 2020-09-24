@@ -23,7 +23,7 @@ Install Dependencies:
 #     - cp .env.example .env
 #     - cat .env
 #   script: 
-    - npm run test
+    # - npm run test
 
 Build Docker Compose:
   stage: build-docker-compose
