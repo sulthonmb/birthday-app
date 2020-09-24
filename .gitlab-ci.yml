@@ -22,5 +22,4 @@ Test:
     - cp .env.example .env
     - cat .env
   script: 
-    - npm test -- -u
     - npm run test
