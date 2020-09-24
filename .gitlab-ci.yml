@@ -26,6 +26,7 @@ Install Dependencies:
     # - npm run test
 
 Build Docker Compose:
+  image: jonaskello/docker-and-compose:1.12.1-1.8.0
   stage: build-docker-compose
   script: 
     - docker-compose build
