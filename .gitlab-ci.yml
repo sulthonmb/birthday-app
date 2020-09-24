@@ -28,5 +28,6 @@ Install Dependencies:
 Build Docker Compose:
   stage: build-docker-compose
   script: 
-    - apk add --no-cache docker-compose
     - docker-compose build
+    - docker-compose down
+    - docker-compose up -d --force-recreate
