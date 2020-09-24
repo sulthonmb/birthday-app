@@ -1,23 +1,23 @@
-import env from '../../env'
+require('dotenv').config()
 
 const conf = {}
-conf.environment = env.environment
+conf.environment = process.env.NODE_ENV
 conf.sequelize = {}
-conf.sequelize.username = env.pg_database_user
-conf.sequelize.password = env.pg_database_pass
-conf.sequelize.database = env.pg_database_name
-conf.sequelize.host = env.pg_database_host
+conf.sequelize.username = process.env.PGUSER || 'admin'
+conf.sequelize.password = process.env.PGPASSWORD || 'blog)r2020'
+conf.sequelize.database = process.env.PGDATABASE || 'gaali_service_users_test'
+conf.sequelize.host = process.env.PGHOST || 'localhost'
 conf.sequelize.dialect = 'postgres'
-conf.sequelize.port = env.pg_database_port
+conf.sequelize.port = process.env.PGPORT || '5432'
 conf.sequelize.define = {
   charset: 'utf8mb4',
   dialectOptions: {
     collate: 'utf8mb4_unicode_ci'
   }
 }
-conf.ROUND_SALT = env.round_salt
+conf.ROUND_SALT = process.env.ROUND_SALT || '8'
 
 const cfg = {}
-cfg[env.environment] = conf.sequelize
+cfg[process.env.NODE_ENV] = conf.sequelize
 
 module.exports = cfg
