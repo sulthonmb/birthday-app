@@ -9,7 +9,7 @@ import {
   successMessage,
   status
 } from '../../helpers/status'
-import redis from '../../config/redis'
+// import redis from '../../config/redis'
 
 const getAllUserTypesService = async () => {
   try {
@@ -22,8 +22,8 @@ const getAllUserTypesService = async () => {
 
 const getSingleUserTypesService = async (id) => {
   try {
-    let response = await redis.get('single_user_type_' + id)
-
+    // let response = await redis.get('single_user_type_' + id)
+    let response = null
     if (response == null) {
       response = await getSingleUserTypes(id)
       return { status: response.status, data: response.data }

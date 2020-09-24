@@ -4,7 +4,7 @@ import {
   successMessage,
   status
 } from '../../helpers/status'
-import redis from '../../config/redis'
+// import redis from '../../config/redis'
 
 const getAllUserTypes = async () => {
   const getAllQuery = 'SELECT * FROM user_types ORDER BY id ASC'
@@ -39,7 +39,7 @@ const getSingleUserTypes = async (id) => {
       errorMessage.error = 'There are no a user type'
       return { status: status.notfound, data: errorMessage }
     }
-    await redis.set('single_user_type_' + id, JSON.stringify(resp))
+    // await redis.set('single_user_type_' + id, JSON.stringify(resp))
     successMessage.status_code = status.success
     successMessage.data = resp
     return { status: status.success, data: successMessage }
