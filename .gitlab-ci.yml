@@ -1,0 +1,26 @@
+image: node:12.4.0-alpine
+
+stages:
+  - build
+  - test
+  
+cache:
+  paths:
+    - node_modules/
+
+Install Dependencies:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+
+Test:
+  stage: test
+  before_script:
+    - cp .env.example .env
+    - cat .env
+  script: 
+    - npm test -- -u
+    - npm run test
