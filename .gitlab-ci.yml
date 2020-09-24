@@ -3,7 +3,7 @@ image: node:12.4.0-alpine
 stages:
   - build
   # - test
-  - deploy-stage
+  - build-docker-compose
   
 cache:
   paths:
@@ -25,8 +25,8 @@ Install Dependencies:
 #   script: 
     - npm run test
 
-Deploy Stage:
-  stage: deploy-stage
+Build Docker Compose:
+  stage: build-docker-compose
   script: 
     - apk add --no-cache docker-compose
-    - docker-compose -f docker-compose.yml up -d
+    - docker-compose build
