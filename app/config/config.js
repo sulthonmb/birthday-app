@@ -1,7 +1,5 @@
-import dotenv from 'dotenv'
-
-dotenv.config()
+import env from '../../env'
 
 module.exports = {
-  masterKey: process.env.API_KEY
+  masterKey: env.api_key
 }

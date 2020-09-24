@@ -16,5 +16,6 @@ module.exports = {
   round_salt: process.env.ROUND_SALT || '8',
   user_docs: process.env.USER_DOCS || 'user',
   pass_docs: process.env.PASS_DOCS || '12345678',
+  api_key: process.env.API_KEY || '****',
   expose_port: process.env.EXPOSE_PORT || '3007'
 }

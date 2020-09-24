@@ -1,23 +1,23 @@
-require('dotenv').config()
+import env from '../../env'
 
 const conf = {}
-conf.environment = process.env.NODE_ENV
+conf.environment = env.environment
 conf.sequelize = {}
-conf.sequelize.username = process.env.PGUSER
-conf.sequelize.password = process.env.PGPASSWORD
-conf.sequelize.database = process.env.PGDATABASE
-conf.sequelize.host = process.env.PGHOST
+conf.sequelize.username = env.pg_database_user
+conf.sequelize.password = env.pg_database_pass
+conf.sequelize.database = env.pg_database_name
+conf.sequelize.host = env.pg_database_host
 conf.sequelize.dialect = 'postgres'
-conf.sequelize.port = process.env.PGPORT
+conf.sequelize.port = env.pg_database_port
 conf.sequelize.define = {
   charset: 'utf8mb4',
   dialectOptions: {
     collate: 'utf8mb4_unicode_ci'
   }
 }
-conf.ROUND_SALT = process.env.ROUND_SALT
+conf.ROUND_SALT = env.round_salt
 
 const cfg = {}
-cfg[process.env.NODE_ENV] = conf.sequelize
+cfg[env.environment] = conf.sequelize
 
 module.exports = cfg
