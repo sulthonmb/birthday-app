@@ -42,8 +42,8 @@ services:
     ports:
       - "5444:5432"
     environment:
-      POSTGRES_PASSWORD: gaali_admin
-      POSTGRES_USER: blog)r2020
+      POSTGRES_PASSWORD: blog)r2020
+      POSTGRES_USER: gaali_admin
       POSTGRES_DB: gaali_service_users
     networks:
       - app-network  
