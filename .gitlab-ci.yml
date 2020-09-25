@@ -16,7 +16,7 @@ stages:
 Test:
   stage: test
   script: 
-    - docker-compose -f docker-compose.test.yml build
+    - docker-compose -f docker-compose.test.yml build --pull
     - docker-compose -f docker-compose.test.yml up --abort-on-container-exit
     - docker-compose -f docker-compose.test.yml down
 
@@ -24,11 +24,20 @@ Build Stage:
   stage: build-stage
   when: manual
   before_script:
+    - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+    - export APP_IMAGE=$IMAGE:app
+    - export POSTGRES_IMAGE=$IMAGE:postgres
+    - export REDIS_IMAGE=$IMAGE:redis
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker-compose -f docker-compose.prod.yml build
-    - docker-compose -f docker-compose.prod.yml push
-    - docker stack deploy preprod -c  docker-compose.prod.yml --with-registry-auth
+    - docker pull $APP_IMAGE || true
+    - docker pull $POSTGRES_IMAGE || true
+    - docker pull $REDIS_IMAGE || true
+    - docker-compose -f docker-compose.prod.yml build --pull
+    - docker push $APP_IMAGE
+    - docker push $POSTGRES_IMAGE
+    - docker push $REDIS_IMAGE
+    # - docker stack deploy preprod -c  docker-compose.prod.yml --with-registry-auth
 
 # Build Docker Compose:
 #   stage: build-docker-compose
