@@ -4,10 +4,6 @@ image: tmaier/docker-compose:latest
 services:
   - docker:dind
 
-before_script:
-  - docker info
-  - docker-compose --version
-
 stages:
   - install
   - build
@@ -29,11 +25,17 @@ Install Dependencies:
 
 Build:
   stage: build
+  before_script:
+    - docker info
+    - docker-compose --version
   script:
     - docker-compose build
 
 Test:
   stage: test
+  before_script:
+    - docker info
+    - docker-compose --version
   script: 
     - docker-compose -f docker-compose.test.yml up --abort-on-container-exit
     - docker-compose down
