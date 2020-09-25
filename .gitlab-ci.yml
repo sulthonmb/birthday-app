@@ -42,9 +42,9 @@ Deploy Stage:
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker-compose -H "ssh://root@$SERVER_STAGING_IP" down --remove-orphans
-    - docker-compose -H "ssh://root@$SERVER_STAGING_IP" pull $APP_IMAGE
-    - docker-compose -H "ssh://root@$SERVER_STAGING_IP" up -d $APP_IMAGE
+    - docker-compose -f docker-compose.prod.yml -H "ssh://root@$SERVER_STAGING_IP" down --remove-orphans
+    - docker-compose -f docker-compose.prod.yml -H "ssh://root@$SERVER_STAGING_IP" pull $APP_IMAGE
+    - docker-compose -f docker-compose.prod.yml -H "ssh://root@$SERVER_STAGING_IP" up -d $APP_IMAGE
 # Build Docker Compose:
 #   stage: build-docker-compose
 #   before_script:
