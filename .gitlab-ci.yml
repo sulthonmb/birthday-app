@@ -24,21 +24,18 @@ Build Stage:
   stage: build-stage
   image: kroniak/ssh-client
   # when: manual
-  # before_script:
-  #   - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-  #   - export APP_IMAGE=$IMAGE:app
+  before_script:
+    - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+    - export APP_IMAGE=$IMAGE:app
   #   - export POSTGRES_IMAGE=$IMAGE:postgres
   #   - export REDIS_IMAGE=$IMAGE:redis
   #   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    # - docker pull $APP_IMAGE || true
-    # - docker pull $POSTGRES_IMAGE || true
-    # - docker pull $REDIS_IMAGE || true
+    - docker pull $APP_IMAGE || true
+    - docker-compose -f docker-compose.prod.yml build --pull
+    - docker push $APP_IMAGE
     - chmod 400 $SSH_PRIVATE_KEY
-    - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_STAGING_IP -p 31012 "docker-compose -f docker-compose.prod.yml up --build -d"
-    # - docker push $APP_IMAGE
-    # - docker push $POSTGRES_IMAGE
-    # - docker push $REDIS_IMAGE
+    - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_STAGING_IP -p 31012 "docker pull $APP_IMAGE"
     # - docker stack deploy preprod -c  docker-compose.prod.yml --with-registry-auth
 
 # Build Docker Compose:
