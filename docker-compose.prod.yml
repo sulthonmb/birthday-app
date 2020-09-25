@@ -4,7 +4,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.prod
-    image: "${APP_IMAGE}"
+    image: ${APP_IMAGE}
     container_name: app
     restart: always
     depends_on:
@@ -34,7 +34,7 @@ services:
     networks:
       - app-network
   db:
-    image: "${POSTGRES_IMAGE}"
+    image: ${POSTGRE_IMAGE}
     container_name: db
     restart: always
     volumes:
@@ -48,7 +48,7 @@ services:
     networks:
       - app-network  
   redis:
-    image: "${REDIS_IMAGE}"
+    image: ${REDIS_IMAGE}
     container_name: redis
     ports:
       - "6333:6379"
