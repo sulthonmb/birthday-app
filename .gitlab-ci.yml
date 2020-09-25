@@ -9,20 +9,20 @@ before_script:
   - docker-compose --version
 
 stages:
-  - test
+  # - test
   - build-stage
   # - build-docker-compose
 
-Test:
-  stage: test
-  script: 
-    - docker-compose -f docker-compose.test.yml build --pull
-    - docker-compose -f docker-compose.test.yml up --abort-on-container-exit
-    - docker-compose -f docker-compose.test.yml down
+# Test:
+#   stage: test
+#   script: 
+#     - docker-compose -f docker-compose.test.yml build --pull
+#     - docker-compose -f docker-compose.test.yml up --abort-on-container-exit
+#     - docker-compose -f docker-compose.test.yml down
 
 Build Stage:
   stage: build-stage
-  when: manual
+  # when: manual
   before_script:
     - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
     - export APP_IMAGE=$IMAGE:app
@@ -33,7 +33,7 @@ Build Stage:
     - docker pull $APP_IMAGE || true
     - docker pull $POSTGRES_IMAGE || true
     - docker pull $REDIS_IMAGE || true
-    - docker-compose -f docker-compose.prod.yml build --pull
+    - docker-compose -f docker-compose.prod.yml build --no-cache
     - docker push $APP_IMAGE
     - docker push $POSTGRES_IMAGE
     - docker push $REDIS_IMAGE
