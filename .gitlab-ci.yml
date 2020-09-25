@@ -11,6 +11,7 @@ services:
 stages:
   # - test
   - build-stage
+  - deploy-stage
   # - build-docker-compose
 
 # Test:
@@ -22,7 +23,6 @@ stages:
 
 Build Stage:
   stage: build-stage
-  image: kroniak/ssh-client
   # when: manual
   before_script:
     - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
@@ -34,10 +34,17 @@ Build Stage:
     - docker pull $APP_IMAGE || true
     - docker-compose -f docker-compose.prod.yml build --pull
     - docker push $APP_IMAGE
-    - chmod 400 $SSH_PRIVATE_KEY
-    - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_STAGING_IP -p 31012 "docker pull $APP_IMAGE"
     # - docker stack deploy preprod -c  docker-compose.prod.yml --with-registry-auth
 
+Deploy Stage:
+  image: kroniak/ssh-client
+  stage: deploy-stage  
+  before_script:
+    - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+    - export APP_IMAGE=$IMAGE:app
+  script:
+    - chmod 400 $SSH_PRIVATE_KEY
+    - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_STAGING_IP -p 31012 "docker pull $APP_IMAGE"
 # Build Docker Compose:
 #   stage: build-docker-compose
 #   before_script:
