@@ -4,9 +4,9 @@ image: tmaier/docker-compose:latest
 services:
   - docker:dind
 
-before_script:
-  - docker info
-  - docker-compose --version
+# before_script:
+#   - docker info
+#   - docker-compose --version
 
 stages:
   # - test
