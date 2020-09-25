@@ -33,6 +33,7 @@ Build Stage:
     - docker pull $APP_IMAGE || true
     - docker pull $POSTGRES_IMAGE || true
     - docker pull $REDIS_IMAGE || true
+    - docker-compose -f docker-compose.prod.yml down
     - docker-compose -f docker-compose.prod.yml build --no-cache
     - docker push $APP_IMAGE
     - docker push $POSTGRES_IMAGE
