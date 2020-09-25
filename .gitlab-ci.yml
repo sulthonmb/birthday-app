@@ -9,6 +9,7 @@ before_script:
   - docker-compose --version
 
 stages:
+  - install
   - build
   - test
   # - build-docker-compose
@@ -18,13 +19,18 @@ cache:
     - node_modules/
 
 Install Dependencies:
-  stage: build
+  image: node:12.4.0-alpine
+  stage: install
   script:
     - npm install
-    - docker-compose build
   artifacts:
     paths:
       - node_modules/
+
+Build:
+  stage: build
+  script:
+    - docker-compose build
 
 Test:
   stage: test
