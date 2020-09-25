@@ -29,7 +29,7 @@ Build Stage:
     - export APP_IMAGE=$IMAGE:app
   #   - export POSTGRES_IMAGE=$IMAGE:postgres
   #   - export REDIS_IMAGE=$IMAGE:redis
-  #   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker pull $APP_IMAGE || true
     - docker-compose -f docker-compose.prod.yml build --pull
@@ -42,6 +42,7 @@ Deploy Stage:
   before_script:
     - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
     - export APP_IMAGE=$IMAGE:app
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - chmod 400 $SSH_PRIVATE_KEY
     - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_STAGING_IP -p 31012 "docker pull $APP_IMAGE"
