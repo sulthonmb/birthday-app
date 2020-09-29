@@ -4,7 +4,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.prod
-    image: ${APP_IMAGE} 
+    image: node:12.4.0-alpine
     container_name: app
     restart: always
     depends_on:
