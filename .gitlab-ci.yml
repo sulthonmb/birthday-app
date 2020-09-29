@@ -42,6 +42,7 @@ Deploy Stage:
       - docker-compose -f docker-compose.prod.yml build
       - docker-compose -f docker-compose.prod.yml down
       - docker-compose -f docker-compose.prod.yml up -d
+      - docker ps
     # - chmod 400 $SSH_PRIVATE_KEY
     # - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_STAGING_IP -p 31012 "cd /home/gaali/stage/"
     # - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_STAGING_IP -p 31012 "if [ -d "$CI_PROJECT_NAME" ]; then rm -Rf $CI_PROJECT_NAME; fi"
