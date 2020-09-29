@@ -39,8 +39,6 @@ stages:
 Deploy Stage:
   stage: deploy-stage 
   image: kroniak/ssh-client
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - chmod 400 $SSH_PRIVATE_KEY
     - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_STAGING_IP -p 31012 "cd /home/gaali/stage/"
