@@ -16,8 +16,8 @@ services:
       - PGHOST=db
       - PGPORT=5432
       - PGDATABASE=gaali_service_users
-      - PGUSER=gaali_admin
-      - PGPASSWORD=blog)r2020
+      - PGUSER=postgres
+      - PGPASSWORD=postgres
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - ROUND_SALT=8
@@ -42,9 +42,9 @@ services:
     ports:
       - "5444:5432"
     environment:
-      POSTGRES_PASSWORD: blog)r2020
-      POSTGRES_USER: gaali_admin
-      POSTGRES_DB: gaali_service_users
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=gaali_service_users
     networks:
       - app-network  
   redis:

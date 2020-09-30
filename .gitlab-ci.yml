@@ -11,7 +11,7 @@ services:
 stages:
   - test
   # - build-stage
-  # - deploy-stage
+  - deploy-stage
   # - build-docker-compose
 
 Test:
@@ -36,12 +36,12 @@ Test:
 #     - docker push $APP_IMAGE
   #   - docker stack deploy preprod -c  docker-compose.prod.yml --with-registry-auth
 
-# Deploy Stage:
-#   stage: deploy-stage 
-#   script:
-#       - docker-compose -f docker-compose.prod.yml build
-#       - docker-compose -f docker-compose.prod.yml down
-#       - docker-compose -f docker-compose.prod.yml up -d
+Deploy Stage:
+  stage: deploy-stage 
+  script:
+      - docker-compose -f docker-compose.dev.yml build
+      - docker-compose -f docker-compose.dev.yml down
+      - docker-compose -f docker-compose.dev.yml up -d
 #       - docker ps
     # - chmod 400 $SSH_PRIVATE_KEY
     # - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_STAGING_IP -p 31012 "cd /home/gaali/stage/"
