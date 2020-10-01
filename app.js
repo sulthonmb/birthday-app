@@ -37,7 +37,7 @@ const swaggerDefinition = {
     description: 'This is the REST API for my product <style>.models {display: none !important}</style>' // short description of the app
   },
   basePath: '/api/v1', // the basepath of your endpoint
-  schemes: ['http', 'https']
+  schemes: ['https']
 }
 
 // options for the swagger docs
