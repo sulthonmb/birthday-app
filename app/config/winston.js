@@ -7,7 +7,7 @@ var time = dt.format('Y-m-d')
 var options = {
   file: {
     level: 'error',
-    filename: `${appRoot}/logs/your-app ${time}.log`,
+    filename: `${appRoot}/logs/meal-delivery-app ${time}.log`,
     handleExceptions: true,
     json: true,
     maxsize: 5242880,
@@ -16,7 +16,7 @@ var options = {
   },
   fileInfo: {
     level: 'info',
-    filename: `${appRoot}/logs/info-your-app ${time}.log`,
+    filename: `${appRoot}/logs/info-meal-delivery-app ${time}.log`,
     handleExceptions: true,
     json: true,
     maxsize: 5242880,

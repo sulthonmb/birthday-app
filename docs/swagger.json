@@ -1,0 +1,643 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a backend service (API) for a food delivery app. \n\n <b>LIST ACCOUNT</b> \n\n <b>Admin:</b> \nemail: admin@gmail.com \npassword: admin123  \n\n <b>User/Customer/Restaurant:</b> \nusername: 1 \npassword: hungry12345678 \n\n <b>Note</b>\nUsername for User/Customer/Restaurant use '<b>The user/customer/restaurant id</b>' \n Password for All User/Customer/Restaurant use '<b>hungry12345678</b>' \n If you run the backend service in localhost don't forget use scheme in <b>HTTP</b> \n\n <b>You can use other docs with Postman File that included in Repository backend service.</b>",
+    "version": "1.0.0",
+    "title": "Docs Meal Delivery API"
+  },
+  "host": "localhost:3009",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Everything for authentication"
+    },
+    {
+      "name": "Restaurant",
+      "description": "Everything restaurant"
+    },
+    {
+      "name": "Transactions",
+      "description": "Access transactions at restaurant"
+    },
+    {
+      "name": "Purchase-Order",
+      "description": "Operations for user to order"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/admin/signin": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login as a Admin",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Sign In Admin",
+            "required": true,
+            "description": "Email: Must be in correct format email 'example@gmail.com'",
+            "schema": {
+              "$ref": "#/definitions/SignInAdmin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/signin": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login as a Users/Customers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Sign In Users/Customers",
+            "required": true,
+            "description": "Username: used 'id' user/customers",
+            "schema": {
+              "$ref": "#/definitions/SignInUsersRestaurant"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/restaurants/signin": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login as a Restaurant",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Sign In Restaurant",
+            "required": true,
+            "description": "Username: used 'id' user/customers",
+            "schema": {
+              "$ref": "#/definitions/SignInUsersRestaurant"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/open-restaurants": {
+      "get": {
+        "tags": [
+          "Restaurant"
+        ],
+        "summary": "List all restaurants that are open at a certain datetime",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "datetime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Must be in correct format yyyy-mm-dd hh:mm:ss"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/nearest-restaurants": {
+      "get": {
+        "tags": [
+          "Restaurant"
+        ],
+        "summary": "List all restaurants within the vicinity of the user’s location or (any location)",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Must be in float (ex. -8.8118449)"
+          },
+          {
+            "name": "long",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Must be in float (ex. 115.1515801)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/open-restaurants-within-working-hours": {
+      "get": {
+        "tags": [
+          "Restaurant"
+        ],
+        "summary": "List all restaurants that are open for x-z hours per day or week",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": true,
+            "description": "Type values that need to be considered for filter",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "per_day",
+                "per_week"
+              ],
+              "default": "per_day"
+            }
+          },
+          {
+            "name": "start_hour",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Must be in integer. Start duration working hours restaurant."
+          },
+          {
+            "name": "end_hour",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Must be in integer. End duration working hours restaurant."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/number-dishes-restaurants": {
+      "get": {
+        "tags": [
+          "Restaurant"
+        ],
+        "summary": "List all restaurants that have x-z number of dishes within a price range",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Must be in integer. Start number of dishes that restaurant have."
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Must be in integer. End number of dishes that restaurant have."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/restaurants-by-price-range": {
+      "get": {
+        "tags": [
+          "Restaurant"
+        ],
+        "summary": "List all restaurants that have x-z number of dishes within a price range",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start_price",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Must be in float. Start price range of dishes that restaurant have."
+          },
+          {
+            "name": "end_price",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Must be in float. End price range of dishes that restaurant have."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/search-terms-dish-and-restaurant": {
+      "get": {
+        "tags": [
+          "Restaurant"
+        ],
+        "summary": "Search for restaurants or dishes by name, ranked by relevance to search term",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "terms",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Keyword to search name restaurant or dish."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/search-terms-dish": {
+      "get": {
+        "tags": [
+          "Restaurant"
+        ],
+        "summary": "Search for restaurants that has a dish matching search term",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "terms",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Keyword to search name dish."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/most-popular-restaurants": {
+      "get": {
+        "tags": [
+          "Restaurant"
+        ],
+        "summary": "The most popular restaurants by transaction volume, either by number of transactions or transaction amount",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "terms",
+            "in": "query",
+            "required": true,
+            "description": "Keyword to search name dish.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "transaction_amount",
+                "transaction_volume"
+              ],
+              "default": "transaction_volume"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/top-customers-by-transactions-date-range": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "The top x users by total transaction amount within a date range",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Must be in correct format yyyy-mm-dd hh:mm:ss. Start date range transactions."
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Must be in correct format yyyy-mm-dd hh:mm:ss. End date range transactions."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Must be in integer. Show top X users/customers."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/transactions-by-restaurants/{idRestorant}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "List all transactions belonging to a restaurant",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "idRestorant",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of restaurant."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/transactions-by-customers/{idUser}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "List all transactions belonging to a user",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "idUser",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of user/customer."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/total-customers-by-transactions-date-range-and-amount": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "The top x users by total transaction amount within a date range",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Must be in correct format yyyy-mm-dd hh:mm:ss. Start date range transactions."
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Must be in correct format yyyy-mm-dd hh:mm:ss. End date range transactions."
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Must be in integer. Price of item in transactions by user made."
+          },
+          {
+            "name": "condition",
+            "in": "query",
+            "required": true,
+            "description": "Users who made transactions above or below $v",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "above",
+                "below"
+              ],
+              "default": "above"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/purchase-order": {
+      "post": {
+        "tags": [
+          "Purchase-Order"
+        ],
+        "summary": "Process a user purchase in an atomic manner and ensure the changes of cash balances can be applied safely and correctly",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Order request",
+            "required": true,
+            "description": "id_menu: Must be in integer\n amount_order: Must be in integer. How much you order the menu/dish",
+            "schema": {
+              "$ref": "#/definitions/PurchaseOrderRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "token": {
+      "type": "apiKey",
+      "name": "token",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "SignInAdmin": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "SignInUsersRestaurant": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "PurchaseOrderRequest": {
+      "type": "object",
+      "properties": {
+        "id_menu": {
+          "type": "integer"
+        },
+        "amount_order": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

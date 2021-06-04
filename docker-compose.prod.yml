@@ -15,7 +15,7 @@ services:
       - PORT=3006
       - PGHOST=db
       - PGPORT=5432
-      - PGDATABASE=gaali_service_users
+      - PGDATABASE=restaurants
       - PGUSER=postgres
       - PGPASSWORD=postgres
       - REDIS_HOST=redis
@@ -44,7 +44,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=gaali_service_users
+      - POSTGRES_DB=restaurants
     networks:
       - app-network  
   redis:

@@ -10,6 +10,15 @@ const signInValidationRules = () => {
   ]
 }
 
+const signInUserValidationRules = () => {
+  return [
+    // must be an email
+    body('username').notEmpty(),
+    // password must be at least 5 chars long
+    body('password').isLength({ min: 8 })
+  ]
+}
+
 const validateSignIn = (req, res, next) => {
   const errors = validationResult(req)
   if (errors.isEmpty()) {
@@ -25,5 +34,6 @@ const validateSignIn = (req, res, next) => {
 
 module.exports = {
   signInValidationRules,
+  signInUserValidationRules,
   validateSignIn
 }

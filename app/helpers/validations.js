@@ -57,7 +57,7 @@ const empty = (input) => {
 const generateUserToken = (email, id, permission) => {
   const token = jwt.sign({
     email,
-    user_id: id,
+    id: id,
     permission: permission
   },
   env.secret, { expiresIn: '3d' })
