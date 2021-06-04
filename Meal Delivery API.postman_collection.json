@@ -1,0 +1,603 @@
+{
+	"info": {
+		"_postman_id": "f60de7a4-2da7-44f6-bdbd-cebd12e9e3e3",
+		"name": "Meal Delivery API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Service Restaurants",
+			"item": [
+				{
+					"name": "Restaurants",
+					"item": [
+						{
+							"name": "List all restaurants that are open at a certain datetime",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEiLCJ1c2VyX2lkIjoiMSIsInBlcm1pc3Npb24iOnsiYWRtaW4iOmZhbHNlLCJ1c2VyIjp0cnVlLCJyZXN0YXVyYW50IjpmYWxzZX0sImlhdCI6MTYyMjc3OTMyNCwiZXhwIjoxNjIzMDM4NTI0fQ.TX06NlYERJk5PMf033g10_1FJ9UU93yj4V8e7GzQUEY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/open-restaurants?datetime=2021-03-02 23:15:00",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"open-restaurants"
+									],
+									"query": [
+										{
+											"key": "datetime",
+											"value": "2021-03-02 23:15:00"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all restaurants that have x-z number of dishes within a price range",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/number-dishes-restaurants?start=12&end=12",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"number-dishes-restaurants"
+									],
+									"query": [
+										{
+											"key": "start",
+											"value": "12",
+											"description": "start number of dishes "
+										},
+										{
+											"key": "end",
+											"value": "12",
+											"description": "end number of dishes "
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search for restaurants that has a dish matching search term",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/search-terms-dish?terms=JUI",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"search-terms-dish"
+									],
+									"query": [
+										{
+											"key": "terms",
+											"value": "JUI"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search for restaurants or dishes by name, ranked by relevance to search term",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/search-terms-dish-and-restaurant?terms=JUI",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"search-terms-dish-and-restaurant"
+									],
+									"query": [
+										{
+											"key": "terms",
+											"value": "JUI"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "The most popular restaurants by transaction volume, either by number of transactions or transaction amount",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/most-popular-restaurants?order_by=transaction_volume",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"most-popular-restaurants"
+									],
+									"query": [
+										{
+											"key": "order_by",
+											"value": "transaction_volume",
+											"description": "val: transaction_amount, transaction_volume"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all restaurants within the vicinity of the user’s location or (any location), ranked by distance (the distances will be displayed in the app)",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/nearest-restaurants?lat=-8.8118449&long=115.1515801",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"nearest-restaurants"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": "-8.8118449"
+										},
+										{
+											"key": "long",
+											"value": "115.1515801"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all restaurants that are open for x-z hours per day or week",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/open-restaurants-within-working-hours?type=per_day&start_hour=1&end_hour=3",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"open-restaurants-within-working-hours"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "per_day",
+											"description": "val: per_day, per_week"
+										},
+										{
+											"key": "start_hour",
+											"value": "1"
+										},
+										{
+											"key": "end_hour",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all restaurants by price range",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/restaurants-by-price-range?start_price=600&end_price=700",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"restaurants-by-price-range"
+									],
+									"query": [
+										{
+											"key": "start_price",
+											"value": "600"
+										},
+										{
+											"key": "end_price",
+											"value": "700"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Transactions",
+					"item": [
+						{
+							"name": "List all transactions belonging to a restaurant",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/transactions-by-restaurants/1",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"transactions-by-restaurants",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all transactions belonging to a user",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/transactions-by-customers/1",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"transactions-by-customers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "The top x users by total transaction amount within a date range",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/top-customers-by-transactions-date-range?start=2018-04-19 00:00:00&end=2020-12-22 00:00:00&limit=10",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"top-customers-by-transactions-date-range"
+									],
+									"query": [
+										{
+											"key": "start",
+											"value": "2018-04-19 00:00:00",
+											"description": "start date range transactions"
+										},
+										{
+											"key": "end",
+											"value": "2020-12-22 00:00:00",
+											"description": "end date range transactions"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "limit list"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Total number of users who made transactions above or below $v within a date range",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjEsInBlcm1pc3Npb24iOnsiYWRtaW4iOnRydWUsImRpcmVjdG9yIjpmYWxzZX0sImlhdCI6MTYyMjY5NjI4NiwiZXhwIjoxNjIyOTU1NDg2fQ.PuZlI4etYw1cDyoFYBzNtqvL6cq0hSrzYhJvjq_Bro8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/total-customers-by-transactions-date-range-and-amount?condition=below&amount=100&start_date=2018-04-19 00:00:00&end_date=2020-12-22 00:00:00",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"total-customers-by-transactions-date-range-and-amount"
+									],
+									"query": [
+										{
+											"key": "condition",
+											"value": "below",
+											"description": "val: above, below. (value above/below amount)"
+										},
+										{
+											"key": "amount",
+											"value": "100",
+											"description": "amount of transactions"
+										},
+										{
+											"key": "start_date",
+											"value": "2018-04-19 00:00:00",
+											"description": "start date transactions"
+										},
+										{
+											"key": "end_date",
+											"value": "2020-12-22 00:00:00",
+											"description": "end date transactions"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Process a user purchase in an atomic manner and ensure the changes of cash balances can be applied safely and correctly.",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjMyIiwiaWQiOiIzMiIsInBlcm1pc3Npb24iOnsiYWRtaW4iOmZhbHNlLCJ1c2VyIjp0cnVlLCJyZXN0YXVyYW50IjpmYWxzZX0sImlhdCI6MTYyMjc4ODkwMSwiZXhwIjoxNjIzMDQ4MTAxfQ.rUKOVDZ6GAu5Qz1yPxtS9ctXERXmRZOamolp9Qcjjeg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id_menu\": 1,\n    \"amount_order\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/purchase-order",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"purchase-order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Purchase Order",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJwZXJtaXNzaW9uIjp7ImFkbWluIjp0cnVlLCJ1c2VyIjpmYWxzZSwicmVzdGF1cmFudCI6ZmFsc2V9LCJpYXQiOjE2MjI3ODkzODAsImV4cCI6MTYyMzA0ODU4MH0.Myel76IgyxwTc9O9PBt95xkwml2jYpOnnSgW82AR9dE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{service_restaurants}}api/v1/purchase-order/9522",
+									"host": [
+										"{{service_restaurants}}api"
+									],
+									"path": [
+										"v1",
+										"purchase-order",
+										"9522"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"email\":\"admin@gmail.com\",\n   \"password\":\"admin123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_restaurants}}api/v1/admin/signin",
+							"host": [
+								"{{service_restaurants}}api"
+							],
+							"path": [
+								"v1",
+								"admin",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"username\":\"32\",\r\n   \"password\":\"hungry12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_restaurants}}api/v1/users/signin",
+							"host": [
+								"{{service_restaurants}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth Restaurant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"username\":\"1\",\r\n   \"password\":\"hungry12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_restaurants}}api/v1/restaurants/signin",
+							"host": [
+								"{{service_restaurants}}api"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "service_restaurants",
+			"value": "https://itsavirus.sulthon.xyz/",
+			"disabled": true
+		},
+		{
+			"key": "service_restaurants",
+			"value": "http://103.41.204.112:3111/"
+		}
+	]
+}
