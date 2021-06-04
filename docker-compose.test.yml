@@ -30,6 +30,7 @@ services:
       - "3009:3006"
     volumes:
       - .:/home/node/app
+      - app_logs:/home/node/app/logs
       - node_modules:/home/node/app/node_modules
     networks:
       - app-network
@@ -62,3 +63,4 @@ networks:
 volumes:
   database-data:
   node_modules:  
+  app_logs: 

@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "Docs Meal Delivery API"
   },
-  "host": "localhost:3009",
+  "host": "meal-delivery-123.herokuapp.com",
   "basePath": "/api/v1",
   "tags": [
     {
