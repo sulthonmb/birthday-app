@@ -23,8 +23,8 @@ services:
       - ROUND_SALT=8
       - API_KEY=****
       - SECRET=s*#P+3asb*t*WMu?A&UX7%#LgQz$cA+XYnMu3vFYsJda!L@%9*sVcLZu_-Zv
-      - USER_DOCS=gaali_docs
-      - PASS_DOCS=jog@2020
+      - USER_DOCS=user
+      - PASS_DOCS=12345678
       - EXPOSE_PORT=3009
     ports:
       - "3009:3006"

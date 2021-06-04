@@ -380,7 +380,7 @@
         ],
         "parameters": [
           {
-            "name": "terms",
+            "name": "order_by",
             "in": "query",
             "required": true,
             "description": "Keyword to search name dish.",
