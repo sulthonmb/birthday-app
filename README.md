@@ -4,9 +4,13 @@ A backend service (API) for a food delivery app.
 
 [Demo App](https://itsavirus.sulthon.xyz/)
 
-Default User Docs (user/12345678)
+If cannot access the url, for alternative use http://103.41.204.112:3111/ as Base URL but you cannot access Swagger Docs, so for the documentation use Postman.
+
+Default User Docs (user/12345678), the documentation use swagger, **note: sometimes need some page refresh** 
 
 [Documentation App](https://itsavirus.sulthon.xyz/docs)
+
+Or access documentation with **File Postman** that include in the repository.
 
 ---
 ## Requirements
@@ -15,7 +19,7 @@ Default User Docs (user/12345678)
 - Docker
 - Redis
 - Postgre
-- Import file **Raw Data** in **Dataset** directory
+- Import file **Raw Data** in **Dataset** directory, Raw Data will seed automatically with Sequelize ORM.
 
 ---
 
