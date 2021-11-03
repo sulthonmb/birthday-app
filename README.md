@@ -46,4 +46,4 @@ Swagger Documentation:
 
 Postman Documentation:
 
-    $ Import file postman collection
+- Import file postman collection
