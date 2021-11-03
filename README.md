@@ -1,14 +1,12 @@
-# Meal Delivery API
+# Birthday API
 
-A backend service (API) for a food delivery app. 
+A backend service (API) for a birthday app. 
 
-[Demo App](https://itsavirus.sulthon.xyz/)
-
-If cannot access the url, for alternative use http://103.41.204.112:3111/ as Base URL but you cannot access Swagger Docs, so for the documentation use Postman.
+[Demo App](/)
 
 Default User Docs (user/12345678), the documentation use swagger, **note: sometimes need some page refresh** 
 
-[Documentation App](https://itsavirus.sulthon.xyz/docs)
+[Documentation App](/docs)
 
 Or access documentation with **File Postman** that include in the repository.
 
@@ -19,14 +17,13 @@ Or access documentation with **File Postman** that include in the repository.
 - Docker
 - Redis
 - Postgre
-- Import file **Raw Data** in **Dataset** directory, Raw Data will seed automatically with Sequelize ORM.
 
 ---
 
 ## Install
 
-    $ git clone https://github.com/sulthonmb/meal-delivery.git
-    $ cd meal-delivery
+    $ git clone https://github.com/sulthonmb/birthday-app.git
+    $ cd birthday-app
     $ npm install
 
 ## Configure app

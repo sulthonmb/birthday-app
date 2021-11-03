@@ -2,8 +2,8 @@
 import {
   errorMessage, successMessage, status
 } from '../../helpers/status'
-import { generateUserToken } from '../../helpers/validations'
-import { getById } from '../../models/users/usersModel'
+import { comparePassword, generateUserToken } from '../../helpers/validations'
+import { getByEmail } from '../../models/users/usersModel'
 
 /**
  * Signin
@@ -12,9 +12,9 @@ import { getById } from '../../models/users/usersModel'
  * @returns {object} user object
  */
 const siginUsers = async (req, res) => {
-  const { username, password } = req.body
+  const { email, password } = req.body
   try {
-    const usersRecord = await getById(username)
+    const usersRecord = await getByEmail({email})
     if (usersRecord.status === status.success) {
       const resultDb = usersRecord.data
       if (!resultDb) {
@@ -23,7 +23,7 @@ const siginUsers = async (req, res) => {
         return res.status(status.notfound).send(errorMessage)
       }
 
-      if (password !== 'hungry12345678') {
+      if (!comparePassword(resultDb.password, password)) {
         errorMessage.status_code = status.forbidden
         errorMessage.error = 'The password you provided is incorrect'
         return res.status(status.forbidden).send(errorMessage)
@@ -32,11 +32,10 @@ const siginUsers = async (req, res) => {
       const permission = {
         admin: false,
         user: true,
-        restaurant: false
       }
       const token = generateUserToken(resultDb.id, resultDb.id, permission)
 
-      delete usersRecord.password
+      delete usersRecord.data.password
       successMessage.status_code = status.success
       successMessage.data = usersRecord.data
       successMessage.data.permission = permission

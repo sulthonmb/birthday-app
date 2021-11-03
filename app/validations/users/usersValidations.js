@@ -4,11 +4,13 @@ import { body, validationResult } from 'express-validator'
 const usersValidationRules = () => {
   return [
     // must not empty
-    body('name').isLength({ min: 3 }),
+    body('first_name').isLength({ min: 3 }),
     body('email').isEmail(),
     body('password').isLength({ min: 8 }),
+    body('country_code').isLength({ min: 2, max: 2 }),
+    body('date_of_birth').isDate(),
     body('phone_number').isLength({ min: 3 }),
-    body('gender').isLength({ min: 1 }),
+    body('gender').isLength({ min: 1, max: 1 }),
     body('id_user_type').isLength({ min: 1 })
   ]
 }

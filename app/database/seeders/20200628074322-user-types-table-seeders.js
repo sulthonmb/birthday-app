@@ -1,11 +1,4 @@
 'use strict'
-const bcrypt = require('bcrypt')
-require('dotenv').config()
-
-function hashPassword (password) {
-  const salt = bcrypt.genSaltSync(parseInt(process.env.ROUND_SALT))
-  return bcrypt.hashSync(password, salt)
-}
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -18,11 +11,18 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('admin', [
+    await queryInterface.bulkInsert('user_types', [
       {
-        name: 'Administrator',
-        email: 'admin@gmail.com',
-        password: hashPassword('admin@123')
+        id: 1,
+        name: 'Director'
+      },
+      {
+        id: 2,
+        name: 'Manager'
+      },
+      {
+        id: 3,
+        name: 'Sales'
       }
     ], {})
   },
@@ -34,6 +34,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('admin', null, {})
+    await queryInterface.bulkDelete('user_types', null, {})
   }
 }

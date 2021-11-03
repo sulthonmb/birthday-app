@@ -10,10 +10,9 @@ import winston from './app/config/winston'
 import env from './env'
 import adminRoutes from './app/routes/adminRoutes'
 import authRoutes from './app/routes/authRoutes'
+import userTypes from './app/routes/userTypesRoutes'
+import usersRoutes from './app/routes/usersRoutes'
 
-import restaurantsRoutes from './app/routes/restaurantsRoutes'
-import transactionsRoutes from './app/routes/transactionsRoutes'
-import purchaseOrdersRoutes from './app/routes/purchaseOrdersRoutes'
 import swaggerDocument from './docs/swagger.json'
 
 const auth = function (req, res, next) {
@@ -54,9 +53,7 @@ app.use('/docs', auth, swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 /* Route App */
 app.use('/api/v1', adminRoutes)
 app.use('/api/v1', authRoutes)
-
-app.use('/api/v1', restaurantsRoutes)
-app.use('/api/v1', transactionsRoutes)
-app.use('/api/v1', purchaseOrdersRoutes)
+app.use('/api/v1', userTypes)
+app.use('/api/v1', usersRoutes)
 
 module.exports = app

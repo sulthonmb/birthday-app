@@ -32,11 +32,10 @@ const siginAdmin = async (req, res) => {
       const permission = {
         admin: true,
         user: false,
-        restaurant: false
       }
       const token = generateUserToken(resultDb.email, resultDb.id, permission)
 
-      delete adminRecord.password
+      delete adminRecord.data.password
       successMessage.status_code = status.success
       successMessage.data = adminRecord.data
       successMessage.data.permission = permission

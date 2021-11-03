@@ -13,7 +13,7 @@ const signInValidationRules = () => {
 const signInUserValidationRules = () => {
   return [
     // must be an email
-    body('username').notEmpty(),
+    body('email').isEmail(),
     // password must be at least 5 chars long
     body('password').isLength({ min: 8 })
   ]

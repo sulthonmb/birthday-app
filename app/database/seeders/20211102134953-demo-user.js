@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 
@@ -18,11 +18,16 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('admin', [
+    await queryInterface.bulkInsert('users', [
       {
-        name: 'Administrator',
-        email: 'admin@gmail.com',
-        password: hashPassword('admin@123')
+        first_name: 'Manager',
+        last_name: 'A',
+        email: 'manager_a@gmail.com',
+        password: hashPassword('manager@123'),
+        country_code: 'GB',
+        date_of_birth: '02-07-1997',
+        phone_number: '085706876773',
+        id_user_type: 2
       }
     ], {})
   },
@@ -34,6 +39,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('admin', null, {})
+    await queryInterface.bulkDelete('users', null, {})
   }
-}
+};

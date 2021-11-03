@@ -12,6 +12,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/runtime": "^7.11.2",
     "app-root-path": "^3.0.0",
+    "axios": "^0.24.0",
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "babel-upgrade": "^1.0.1",
@@ -33,6 +34,7 @@
     "make-runnable": "^1.3.6",
     "moment": "^2.24.0",
     "morgan": "^1.10.0",
+    "node-cron": "^3.0.0",
     "node-datetime": "^2.1.2",
     "npm-run-all": "^4.1.5",
     "redis": "^3.0.2",
@@ -90,9 +92,9 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "seed-all": "node_modules\\.bin\\sequelize db:seed:all ",
-    "migrate": "node_modules\\.bin\\sequelize db:migrate ",
-    "migrate-reset": "node_modules\\.bin\\sequelize db:migrate:undo:all ",
+    "seed-all": "./node_modules/.bin/sequelize db:seed:all ",
+    "migrate": "./node_modules/.bin/sequelize db:migrate ",
+    "migrate-reset": "./node_modules/.bin/sequelize db:migrate:undo:all ",
     "lint": "eslint --fix --ignore-path .gitignore .",
     "pretest": "cross-env NODE_ENV=test npm run lint && npm run migrate-reset && npm run migrate && npm run seed-all",
     "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=10000 --forceExit",

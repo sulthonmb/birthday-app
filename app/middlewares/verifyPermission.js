@@ -43,24 +43,7 @@ const verifyUser = async (req, res, next) => {
   }
 }
 
-const verifyRestaurant = async (req, res, next) => {
-  try {
-    const { permission } = req.user
-    if (!permission.restaurant === true) {
-      errorMessage.status_code = status.unauthorized
-      errorMessage.error = 'Sorry You are unauthorized.'
-      return res.status(status.unauthorized).send(errorMessage)
-    }
-
-    next()
-  } catch (error) {
-    errorMessage.error = 'Authentication Failed'
-    return res.status(status.unauthorized).send(errorMessage)
-  }
-}
-
 export {
   verifyAdmin,
-  verifyUser,
-  verifyRestaurant
+  verifyUser
 }
