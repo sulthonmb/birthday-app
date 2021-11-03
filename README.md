@@ -2,13 +2,7 @@
 
 A backend service (API) for a birthday app. 
 
-[Demo App](/)
-
-Default User Docs (user/12345678), the documentation use swagger, **note: sometimes need some page refresh** 
-
-[Documentation App](/docs)
-
-Or access documentation with **File Postman** that include in the repository.
+Default User Docs (user/12345678), the documentation use swagger or access documentation with **File Postman** that include in the repository.
 
 ---
 ## Requirements
@@ -37,11 +31,11 @@ Open `.env` then edit it with your settings. You will need:
 
 For Development:
 
-    $ docker-compose -f docker-compose.dev.yml up -d
+    $ docker-compose -f docker-compose.dev.yml up --build
 
 For Production:
     
-    $ docker-compose -f docker-compose.prod.yml up -d
+    $ docker-compose -f docker-compose.prod.yml up --build
 
 ## Documentation
 

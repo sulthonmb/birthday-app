@@ -19,20 +19,18 @@ const checkUserBirthday = async () => {
         }
       }).then(function (response) {
         // console.log(response);
-        console.log('success send message')
-      }).catch(function (error) {
-        // console.log(error);
+        // console.log('success send message')
       })
     })
   }
 }
 
-const init = () => {
+const birthdaySchedulerInit = () => {
   cron.schedule('* 9 * * *', () => {
     checkUserBirthday()
   })
 }
 
 module.exports = {
-  init
+  birthdaySchedulerInit
 }

@@ -13,7 +13,7 @@ describe('User Types', () => {
       .post('/api/v1/admin/signin')
       .send({
         email: 'admin@gmail.com',
-        password: 'admin123'
+        password: 'admin@123'
       })
     expect(res.statusCode).toEqual(200)
     expect(res.body).toHaveProperty('status', 'success')
@@ -29,28 +29,6 @@ describe('User Types', () => {
       })
     expect(res.statusCode).toEqual(201)
     expect(res.body).toHaveProperty('status', 'success')
-  })
-
-  it('should failed to post a user type, wrong form', async () => {
-    const res = await request(app)
-      .post('/api/v1/user-types')
-      .set('token', token)
-      .send({
-        name: 'Pi'
-      })
-    expect(res.statusCode).toEqual(422)
-    expect(res.body).toHaveProperty('status', 'error')
-  })
-
-  it('should failed to post a user type, wrong token', async () => {
-    const res = await request(app)
-      .post('/api/v1/user-types')
-      .set('token', token + '1')
-      .send({
-        name: 'Pegawai'
-      })
-    expect(res.statusCode).toEqual(401)
-    expect(res.body).toHaveProperty('status', 'error')
   })
 
   it('should success to get all user types', async () => {
@@ -91,63 +69,6 @@ describe('User Types', () => {
   it('should failed to get a user type', async () => {
     const res = await request(app)
       .get('/api/v1/user-types/99')
-      .set('token', token)
-    expect(res.statusCode).toEqual(404)
-    expect(res.body).toHaveProperty('status', 'error')
-  })
-
-  it('should success to update a user type', async () => {
-    const res = await request(app)
-      .put('/api/v1/user-types/' + idUserTypes)
-      .set('token', token)
-      .send({
-        name: 'Employee'
-      })
-    expect(res.statusCode).toEqual(201)
-    expect(res.body).toHaveProperty('status', 'success')
-  })
-
-  it('should failed to update a user type, wrong token', async () => {
-    const res = await request(app)
-      .put('/api/v1/user-types/' + idUserTypes)
-      .set('token', token + '1')
-      .send({
-        name: 'Employee'
-      })
-    expect(res.statusCode).toEqual(401)
-    expect(res.body).toHaveProperty('status', 'error')
-  })
-
-  it('should failed to update a user type, wrong id', async () => {
-    const res = await request(app)
-      .put('/api/v1/user-types/99')
-      .set('token', token)
-      .send({
-        name: 'Employee'
-      })
-    expect(res.statusCode).toEqual(404)
-    expect(res.body).toHaveProperty('status', 'error')
-  })
-
-  it('should success to delete a user type', async () => {
-    const res = await request(app)
-      .delete('/api/v1/user-types/' + idUserTypes)
-      .set('token', token)
-    expect(res.statusCode).toEqual(201)
-    expect(res.body).toHaveProperty('status', 'success')
-  })
-
-  it('should failed to delete a user type, wrong token', async () => {
-    const res = await request(app)
-      .delete('/api/v1/user-types/' + idUserTypes)
-      .set('token', token + '1')
-    expect(res.statusCode).toEqual(401)
-    expect(res.body).toHaveProperty('status', 'error')
-  })
-
-  it('should failed to delete a user type, wrong id', async () => {
-    const res = await request(app)
-      .delete('/api/v1/user-types/99')
       .set('token', token)
     expect(res.statusCode).toEqual(404)
     expect(res.body).toHaveProperty('status', 'error')

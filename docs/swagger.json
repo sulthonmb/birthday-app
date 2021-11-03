@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "Docs Birthday API"
   },
-  "host": "localhost:5255",
+  "host": "localhost:3009",
   "basePath": "/api/v1",
   "tags": [
     {

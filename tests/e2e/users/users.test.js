@@ -10,7 +10,7 @@ describe('Users', () => {
       .post('/api/v1/admin/signin')
       .send({
         email: 'admin@gmail.com',
-        password: 'admin123'
+        password: 'admin@123'
       })
     expect(res.statusCode).toEqual(200)
     expect(res.body).toHaveProperty('status', 'success')
@@ -22,9 +22,12 @@ describe('Users', () => {
       .post('/api/v1/users')
       .set('token', token)
       .send({
-        name: 'Pegawai A',
+        first_name: 'User',
+        last_name: 'A',
         email: 'pegawai_a@gmail.com',
         password: '12345678',
+        country_code: 'GB',
+        date_of_birth: '1997-02-08',
         phone_number: '+6283748209883',
         gender: 'L',
         id_user_type: '2'
@@ -113,9 +116,12 @@ describe('Users', () => {
       .put('/api/v1/users/' + idUsers)
       .set('token', token)
       .send({
-        name: 'Employee',
+        first_name: 'User',
+        last_name: 'A',
         email: 'pegawai_a@gmail.com',
         password: '12345678',
+        country_code: 'GB',
+        date_of_birth: '1997-02-08',
         phone_number: '+6283748209883',
         gender: 'L',
         id_user_type: '2'

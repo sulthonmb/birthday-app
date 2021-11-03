@@ -18,7 +18,7 @@ describe('Admin Sign In', () => {
       .post('/api/v1/admin/signin')
       .send({
         email: 'admin@gmail.com',
-        password: 'admin123'
+        password: 'admin@123'
       })
     expect(res.statusCode).toEqual(200)
     expect(res.body).toHaveProperty('status', 'success')
