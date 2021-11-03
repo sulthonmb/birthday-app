@@ -24,8 +24,8 @@ Default User Docs (user/12345678), the documentation use swagger or access docum
 
 Open `.env` then edit it with your settings. You will need:
 
-- copy .env.example to .env;;
-- configure variable;
+- copy .env.example to .env
+- configure variable
 
 ## Running the project
 
