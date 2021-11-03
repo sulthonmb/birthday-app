@@ -15,7 +15,7 @@ services:
       - PORT=3006
       - PGHOST=db
       - PGPORT=5432
-      - PGDATABASE=restaurants
+      - PGDATABASE=digital_envision
       - PGUSER=postgres
       - PGPASSWORD=postgres
       - REDIS_HOST=redis
@@ -45,7 +45,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=restaurants
+      - POSTGRES_DB=digital_envision
     networks:
       - app-network  
   redis:
