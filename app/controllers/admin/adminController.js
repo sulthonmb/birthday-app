@@ -31,7 +31,7 @@ const siginAdmin = async (req, res) => {
 
       const permission = {
         admin: true,
-        user: false,
+        user: false
       }
       const token = generateUserToken(resultDb.email, resultDb.id, permission)
 

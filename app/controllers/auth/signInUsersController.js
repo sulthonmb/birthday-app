@@ -14,7 +14,7 @@ import { getByEmail } from '../../models/users/usersModel'
 const siginUsers = async (req, res) => {
   const { email, password } = req.body
   try {
-    const usersRecord = await getByEmail({email})
+    const usersRecord = await getByEmail({ email })
     if (usersRecord.status === status.success) {
       const resultDb = usersRecord.data
       if (!resultDb) {
@@ -31,7 +31,7 @@ const siginUsers = async (req, res) => {
 
       const permission = {
         admin: false,
-        user: true,
+        user: true
       }
       const token = generateUserToken(resultDb.id, resultDb.id, permission)
 

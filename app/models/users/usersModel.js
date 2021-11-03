@@ -24,7 +24,7 @@ const getAllUsers = async () => {
   }
 }
 
-const getSingleUser = async ({id}) => {
+const getSingleUser = async ({ id }) => {
   const getSingleQuery = 'SELECT * FROM users WHERE id=$1 ORDER BY id DESC'
   const value = [
     id
@@ -47,7 +47,7 @@ const getSingleUser = async ({id}) => {
   }
 }
 
-const getByEmail = async ({email}) => {
+const getByEmail = async ({ email }) => {
   const getUserByEmailQuery = 'SELECT * FROM users WHERE email = $1'
   try {
     const { rows } = await runSQL.query(getUserByEmailQuery, [email])
@@ -60,7 +60,7 @@ const getByEmail = async ({email}) => {
   }
 }
 
-const getByEmailId = async ({id, email}) => {
+const getByEmailId = async ({ id, email }) => {
   const getUserByEmailQuery = 'SELECT * FROM users WHERE email = $1 AND id != $2'
   try {
     const { rows } = await runSQL.query(getUserByEmailQuery, [email, id])
@@ -73,7 +73,7 @@ const getByEmailId = async ({id, email}) => {
   }
 }
 
-const createUser = async ({first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type}) => {
+const createUser = async ({ first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type }) => {
   const createQuery = `INSERT INTO
           users (first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type)
           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
@@ -83,7 +83,7 @@ const createUser = async ({first_name, last_name, email, password, country_code,
     last_name,
     email,
     password,
-    country_code, 
+    country_code,
     date_of_birth,
     phone_number,
     gender,
@@ -103,7 +103,7 @@ const createUser = async ({first_name, last_name, email, password, country_code,
   }
 }
 
-const updateUser = async ({id, first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type}) => {
+const updateUser = async ({ id, first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type }) => {
   const updateQuery = `UPDATE users SET
           first_name=$1,
           last_name=$2,
@@ -147,7 +147,7 @@ const updateUser = async ({id, first_name, last_name, email, password, country_c
   }
 }
 
-const deleteUser = async ({id}) => {
+const deleteUser = async ({ id }) => {
   const deleteQuery = `DELETE FROM users WHERE
           id=$1 
           returning *`
@@ -174,7 +174,7 @@ const deleteUser = async ({id}) => {
 }
 
 const getUsersByBirthdate = async () => {
-  const getAllQuery = `SELECT * FROM users WHERE DATE_PART('day', date_of_birth) = DATE_PART('day', CURRENT_DATE) AND DATE_PART('month', date_of_birth) = DATE_PART('month', CURRENT_DATE) ORDER BY id ASC`
+  const getAllQuery = 'SELECT * FROM users WHERE DATE_PART(\'day\', date_of_birth) = DATE_PART(\'day\', CURRENT_DATE) AND DATE_PART(\'month\', date_of_birth) = DATE_PART(\'month\', CURRENT_DATE) ORDER BY id ASC'
   try {
     const { rows } = await runSQL.query(getAllQuery)
     const dbResponse = rows

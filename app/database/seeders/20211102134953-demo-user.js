@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 
@@ -41,4 +41,4 @@ module.exports = {
      */
     await queryInterface.bulkDelete('users', null, {})
   }
-};
+}

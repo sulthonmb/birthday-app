@@ -28,12 +28,12 @@ module.exports = {
       country_code: {
         allowNull: false,
         primaryKey: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       date_of_birth: {
         allowNull: false,
         primaryKey: false,
-        type: Sequelize.DATEONLY,
+        type: Sequelize.DATEONLY
       },
       phone_number: {
         type: Sequelize.STRING,

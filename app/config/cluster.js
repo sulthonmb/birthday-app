@@ -1,6 +1,6 @@
+import birthdayScheduler from '../scheduler/birthdayScheduler'
 const cluster = require('cluster')
 const os = require('os')
-import birthdayScheduler from '../scheduler/birthdayScheduler'
 
 const workers = []
 
@@ -38,9 +38,9 @@ export default async () => {
       console.log(message)
     })
   })
-  
+
   /* Scheduler */
   birthdayScheduler.init()
-  
+
   console.log(`Master PID: ${process.pid}`)
 }

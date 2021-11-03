@@ -39,7 +39,7 @@ const getAllUsers = async (req, res) => {
 const getSingleUser = async (req, res) => {
   try {
     const { id } = req.params
-    const resp = await getSingleUserService({id})
+    const resp = await getSingleUserService({ id })
     return res.status(resp.status).send(resp.data)
   } catch (e) {
     return res.status(status.error).send(e.message)
@@ -67,16 +67,17 @@ const createUser = async (req, res) => {
 
   try {
     const resp = await createUserService({
-      first_name, 
-      last_name, 
+      first_name,
+      last_name,
       email,
       password: hashPassword(password),
       country_code,
       date_of_birth,
-      phone_number, 
-      gender, 
-      id_user_type})
-    
+      phone_number,
+      gender,
+      id_user_type
+    })
+
     // delete resp.data.data.password
     return res.status(resp.status).send(resp.data)
   } catch (e) {
@@ -112,16 +113,17 @@ const updateUser = async (req, res) => {
 
   try {
     const resp = await updateUserService({
-      id, 
+      id,
       first_name,
       last_name,
-      email, 
-      password: hashPassword(password), 
+      email,
+      password: hashPassword(password),
       country_code,
       date_of_birth,
-      phone_number, 
-      gender, 
-      id_user_type})
+      phone_number,
+      gender,
+      id_user_type
+    })
 
     // delete resp.data.data.password
     return res.status(resp.status).send(resp.data)
@@ -146,7 +148,7 @@ const deleteUser = async (req, res) => {
   }
 
   try {
-    const resp = await deleteUserService({id})
+    const resp = await deleteUserService({ id })
     return res.status(resp.status).send(resp.data)
   } catch (e) {
     return res.status(status.error).send(e.message)
