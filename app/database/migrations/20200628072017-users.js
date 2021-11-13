@@ -25,7 +25,17 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      country_code: {
+      country: {
+        allowNull: false,
+        primaryKey: false,
+        type: Sequelize.STRING
+      },
+      city: {
+        allowNull: false,
+        primaryKey: false,
+        type: Sequelize.STRING
+      },
+      timezone: {
         allowNull: false,
         primaryKey: false,
         type: Sequelize.STRING
@@ -42,6 +52,11 @@ module.exports = {
       },
       gender: {
         type: Sequelize.STRING,
+        primaryKey: false,
+        allowNull: true
+      },
+      last_year_sent_birhtday: {
+        type: Sequelize.INTEGER,
         primaryKey: false,
         allowNull: true
       },

@@ -7,11 +7,12 @@ const usersValidationRules = () => {
     body('first_name').isLength({ min: 3 }),
     body('email').isEmail(),
     body('password').isLength({ min: 8 }),
-    body('country_code').isLength({ min: 2, max: 2 }),
+    body('country').isString(),
+    body('city').isString(),
     body('date_of_birth').isDate(),
     body('phone_number').isLength({ min: 3 }),
     body('gender').isLength({ min: 1, max: 1 }),
-    body('id_user_type').isLength({ min: 1 })
+    body('id_user_type').isInt({ min: 1 })
   ]
 }
 

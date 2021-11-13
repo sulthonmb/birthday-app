@@ -267,7 +267,10 @@
         "password": {
           "type": "string"
         },
-        "country_code": {
+        "country": {
+          "type": "string"
+        },
+        "city": {
           "type": "string"
         },
         "date_of_birth": {
