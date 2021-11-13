@@ -272,7 +272,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\":\"User\",\r\n    \"last_name\":\"A\",\r\n    \"email\":\"user_a@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"country_code\": \"GB\",\r\n    \"date_of_birth\": \"1997-02-08\",\r\n    \"phone_number\":\"+6285793874882\",\r\n    \"gender\":\"L\",\r\n    \"id_user_type\":\"2\"\r\n}",
+							"raw": "{\r\n    \"first_name\":\"User\",\r\n    \"last_name\":\"A\",\r\n    \"email\":\"user_n@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"country\": \"United States\",\r\n    \"city\": \"Washington\",\r\n    \"date_of_birth\": \"1997-02-08\",\r\n    \"phone_number\":\"+6285793874882\",\r\n    \"gender\":\"L\",\r\n    \"id_user_type\":\"2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -655,7 +655,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\":\"User\",\r\n    \"last_name\":\"m\",\r\n    \"email\":\"user_m@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"country_code\": \"GB\",\r\n    \"date_of_birth\": \"1997-02-08\",\r\n    \"phone_number\":\"+6285793874882\",\r\n    \"gender\":\"L\",\r\n    \"id_user_type\":\"2\"\r\n}",
+							"raw": "{\r\n    \"first_name\":\"User\",\r\n    \"last_name\":\"m\",\r\n    \"email\":\"user_m@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"country\": \"United Kingdom\",\r\n    \"city\": \"London\",\r\n    \"date_of_birth\": \"1997-02-08\",\r\n    \"phone_number\":\"+6285793874882\",\r\n    \"gender\":\"L\",\r\n    \"id_user_type\":\"2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -878,7 +878,7 @@
 		},
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJwZXJtaXNzaW9uIjp7ImFkbWluIjp0cnVlLCJ1c2VyIjpmYWxzZX0sImlhdCI6MTYzNTk0NDAwOSwiZXhwIjoxNjM2MjAzMjA5fQ.es3830pRDBG4vLKhf9E-s0cqH_3aouxSa0icDlvyDTU"
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJwZXJtaXNzaW9uIjp7ImFkbWluIjp0cnVlLCJ1c2VyIjpmYWxzZX0sImlhdCI6MTYzNjc3NjEzNiwiZXhwIjoxNjM3MDM1MzM2fQ.RTrg4mI9V7IFtSVnvK5sqV6-tv0atLZ7hMgy0li6jTE"
 		}
 	]
 }
