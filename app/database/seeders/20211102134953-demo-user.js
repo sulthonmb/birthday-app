@@ -24,7 +24,9 @@ module.exports = {
         last_name: 'A',
         email: 'manager_a@gmail.com',
         password: hashPassword('manager@123'),
-        country_code: 'GB',
+        country: 'United Kingdom',
+        city: 'London',
+        timezone: 'Europe/London',
         date_of_birth: '02-07-1997',
         phone_number: '085706876773',
         id_user_type: 2

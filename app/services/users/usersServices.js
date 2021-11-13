@@ -12,6 +12,8 @@ import {
   errorMessage
 } from '../../helpers/status'
 
+import { getTimeZone } from '../IPGeolocation/ApiIPGeolocation'
+
 const getAllUsersService = async () => {
   try {
     const response = await getAllUsers()
@@ -30,7 +32,7 @@ const getSingleUserService = async ({ id }) => {
   }
 }
 
-const createUserService = async ({ first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type }) => {
+const createUserService = async ({ first_name, last_name, email, password, country, city, date_of_birth, phone_number, gender, id_user_type }) => {
   try {
     const usersRecord = await getByEmail({ email })
     if (usersRecord.status === status.success && usersRecord.data) {
@@ -39,12 +41,16 @@ const createUserService = async ({ first_name, last_name, email, password, count
       return { status: status.bad, data: errorMessage }
     }
 
+    const timezone = await getTimeZone({ country, city })
+
     const response = await createUser({
       first_name,
       last_name,
       email,
       password,
-      country_code,
+      country,
+      city,
+      timezone,
       date_of_birth,
       phone_number,
       gender,
@@ -57,7 +63,7 @@ const createUserService = async ({ first_name, last_name, email, password, count
   }
 }
 
-const updateUserService = async ({ id, first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type }) => {
+const updateUserService = async ({ id, first_name, last_name, email, password, country, city, date_of_birth, phone_number, gender, id_user_type }) => {
   try {
     const checkUser = await getSingleUser({ id })
     if (checkUser.status !== status.success || !checkUser.data) {
@@ -67,12 +73,13 @@ const updateUserService = async ({ id, first_name, last_name, email, password, c
     }
 
     const usersRecord = await getByEmailId({ id, email })
-    console.log(usersRecord)
     if (usersRecord.status === status.success && usersRecord.data) {
       errorMessage.status_code = status.bad
       errorMessage.error = 'Email is exists'
       return { status: status.bad, data: errorMessage }
     }
+
+    const timezone = await getTimeZone({ country, city })
 
     const response = await updateUser({
       id,
@@ -80,7 +87,9 @@ const updateUserService = async ({ id, first_name, last_name, email, password, c
       last_name,
       email,
       password,
-      country_code,
+      country,
+      city,
+      timezone,
       date_of_birth,
       phone_number,
       gender,

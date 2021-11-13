@@ -13,6 +13,8 @@ module.exports = {
   environment: process.env.NODE_ENV,
   redis_host: process.env.REDIS_HOST,
   redis_port: process.env.REDIS_PORT,
+  api_ip_geolocation: process.env.API_IP_GEOLOCATION,
+  hookbin: process.env.HOOKBIN,
   round_salt: process.env.ROUND_SALT,
   user_docs: process.env.USER_DOCS,
   pass_docs: process.env.PASS_DOCS,

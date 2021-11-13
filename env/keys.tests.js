@@ -14,6 +14,8 @@ module.exports = {
   redis_host: process.env.REDIS_HOST_TEST || '103.41.204.112',
   redis_port: process.env.REDIS_PORT_TEST || '6739',
   round_salt: process.env.ROUND_SALT || '8',
+  api_ip_geolocation: process.env.API_IP_GEOLOCATION,
+  hookbin: process.env.HOOKBIN,
   user_docs: process.env.USER_DOCS || 'user',
   pass_docs: process.env.PASS_DOCS || '12345678',
   api_key: process.env.API_KEY || '****',

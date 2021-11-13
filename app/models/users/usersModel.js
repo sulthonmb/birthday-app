@@ -73,17 +73,19 @@ const getByEmailId = async ({ id, email }) => {
   }
 }
 
-const createUser = async ({ first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type }) => {
+const createUser = async ({ first_name, last_name, email, password, country, city, timezone, date_of_birth, phone_number, gender, id_user_type }) => {
   const createQuery = `INSERT INTO
-          users (first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type)
-          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+          users (first_name, last_name, email, password, country, city, timezone, date_of_birth, phone_number, gender, id_user_type)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
           returning *`
   const values = [
     first_name,
     last_name,
     email,
     password,
-    country_code,
+    country,
+    city,
+    timezone,
     date_of_birth,
     phone_number,
     gender,
@@ -103,29 +105,62 @@ const createUser = async ({ first_name, last_name, email, password, country_code
   }
 }
 
-const updateUser = async ({ id, first_name, last_name, email, password, country_code, date_of_birth, phone_number, gender, id_user_type }) => {
+const updateUser = async ({ id, first_name, last_name, email, password, country, city, timezone, date_of_birth, phone_number, gender, id_user_type }) => {
   const updateQuery = `UPDATE users SET
           first_name=$1,
           last_name=$2,
           email=$3,
           password=$4,
-          country_code=$5, 
-          date_of_birth=$6,
-          phone_number=$7,
-          gender=$8,
-          id_user_type=$9
-          WHERE id=$10
+          country=$5, 
+          city=$6,
+          timezone=$7,
+          date_of_birth=$8,
+          phone_number=$9,
+          gender=$10,
+          id_user_type=$11
+          WHERE id=$12
           returning *`
   const values = [
     first_name,
     last_name,
     email,
     password,
-    country_code,
+    country,
+    city,
+    timezone,
     date_of_birth,
     phone_number,
     gender,
     id_user_type,
+    id
+  ]
+
+  try {
+    const { rows } = await runSQL.query(updateQuery, values)
+    const dbResponse = rows[0]
+    if (dbResponse === undefined) {
+      errorMessage.status_code = status.notfound
+      errorMessage.error = 'There are no user'
+      return { status: status.notfound, data: errorMessage }
+    }
+    successMessage.status_code = status.created
+    successMessage.data = dbResponse
+    return { status: status.created, data: successMessage }
+  } catch (error) {
+    errorMessage.status_code = status.error
+    errorMessage.error = 'Unable to update user'
+    return { status: status.error, data: errorMessage }
+  }
+}
+
+const updateLastYearSentBirthdayUser = async ({ id }) => {
+  const year = new Date().getFullYear()
+  const updateQuery = `UPDATE users SET
+          last_year_sent_birhtday=$1
+          WHERE id=$2
+          returning *`
+  const values = [
+    year,
     id
   ]
 
@@ -173,10 +208,38 @@ const deleteUser = async ({ id }) => {
   }
 }
 
-const getUsersByBirthdate = async () => {
-  const getAllQuery = 'SELECT * FROM users WHERE DATE_PART(\'day\', date_of_birth) = DATE_PART(\'day\', CURRENT_DATE) AND DATE_PART(\'month\', date_of_birth) = DATE_PART(\'month\', CURRENT_DATE) ORDER BY id ASC'
+const getUsersByBirthdate = async ({ timezone }) => {
+  const yearNow = new Date().getFullYear()
+  const getAllQuery = 'SELECT * FROM users WHERE DATE_PART(\'day\', date_of_birth) = DATE_PART(\'day\', CURRENT_DATE) AND DATE_PART(\'month\', date_of_birth) = DATE_PART(\'month\', CURRENT_DATE) AND timezone=$1 AND ( last_year_sent_birhtday IS NULL OR last_year_sent_birhtday < $2 ) ORDER BY id ASC'
+  const values = [
+    timezone,
+    yearNow
+  ]
   try {
-    const { rows } = await runSQL.query(getAllQuery)
+    const { rows } = await runSQL.query(getAllQuery, values)
+    const dbResponse = rows
+    if (dbResponse[0] === undefined) {
+      errorMessage.status_code = status.notfound
+      errorMessage.error = 'There are no user types'
+      return { status: status.notfound, data: errorMessage }
+    }
+    successMessage.status_code = status.success
+    successMessage.data = dbResponse
+    return { status: status.success, data: successMessage }
+  } catch (error) {
+    errorMessage.error = 'Unable to get all user types'
+    return { status: status.error, data: errorMessage }
+  }
+}
+
+const getUsersUnsentBirthdayMessage = async () => {
+  const yearNow = new Date().getFullYear()
+  const getAllQuery = 'SELECT * FROM users WHERE DATE_PART(\'day\', date_of_birth) < DATE_PART(\'day\', CURRENT_DATE) AND DATE_PART(\'month\', date_of_birth) < DATE_PART(\'month\', CURRENT_DATE) AND ( last_year_sent_birhtday IS NULL OR last_year_sent_birhtday < $1 ) ORDER BY id ASC'
+  const values = [
+    yearNow
+  ]
+  try {
+    const { rows } = await runSQL.query(getAllQuery, values)
     const dbResponse = rows
     if (dbResponse[0] === undefined) {
       errorMessage.status_code = status.notfound
@@ -199,6 +262,8 @@ module.exports = {
   getByEmailId,
   createUser,
   updateUser,
+  updateLastYearSentBirthdayUser,
   deleteUser,
-  getUsersByBirthdate
+  getUsersByBirthdate,
+  getUsersUnsentBirthdayMessage
 }

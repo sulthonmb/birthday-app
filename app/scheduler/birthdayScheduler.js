@@ -1,36 +1,46 @@
 import cron from 'node-cron'
 import axios from 'axios'
-import { getUsersByBirthdate } from '../models/users/usersModel'
+import moment from 'moment-timezone'
+import { updateLastYearSentBirthdayUser, getUsersByBirthdate, getUsersUnsentBirthdayMessage } from '../models/users/usersModel'
 import {
   status
 } from '../helpers/status'
+import env from '../../env'
 
-const checkUserBirthday = async () => {
-  const users = await getUsersByBirthdate()
+const checkUserBirthday = async ({ timezone = null }) => {
+  let users = null
+  if(timezone){
+    users = await getUsersByBirthdate({ timezone })
+  } else {
+    users = await getUsersUnsentBirthdayMessage()
+  }
   if (users.status === status.success && users.data.status_code === status.success && users.data.data) {
-    // console.log(users.data.data)
-    // console.log()
-    users.data.data.forEach(async ({ first_name, last_name }) => {
+    users.data.data.forEach(async ({ id, first_name, last_name }) => {
       const messages = `Hey, ${first_name} ${last_name} it’s your birthday`
-      // console.log(messages)
-      await axios.get('https://hookb.in/DrJRBqzPLPCPajxxaXpD', {
+      console.log(messages)
+      await axios.get(`https://hookb.in/${env.hookbin}`, {
         params: {
           messages: messages
         }
-      }).then(function (response) {
-        // console.log(response);
-        // console.log('success send message')
+      }).then(async (response) => {
+        const updateLastYear = await updateLastYearSentBirthdayUser({ id })
       })
     })
   }
 }
 
 const birthdaySchedulerInit = () => {
-  cron.schedule('* 9 * * *', () => {
-    checkUserBirthday()
+  checkUserBirthday({timezone: null})
+
+  const listTimeZone = moment.tz.names()
+  listTimeZone.forEach((timezone) => {
+    cron.schedule('* 9 * * *', () => {
+      checkUserBirthday({ timezone })
+    }, { timezone })
   })
 }
 
 module.exports = {
-  birthdaySchedulerInit
+  birthdaySchedulerInit,
+  checkUserBirthday
 }
