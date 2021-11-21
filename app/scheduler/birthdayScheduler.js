@@ -9,7 +9,7 @@ import env from '../../env'
 
 const checkUserBirthday = async ({ timezone = null }) => {
   let users = null
-  if(timezone){
+  if (timezone) {
     users = await getUsersByBirthdate({ timezone })
   } else {
     users = await getUsersUnsentBirthdayMessage()
@@ -23,14 +23,14 @@ const checkUserBirthday = async ({ timezone = null }) => {
           messages: messages
         }
       }).then(async (response) => {
-        const updateLastYear = await updateLastYearSentBirthdayUser({ id })
+        await updateLastYearSentBirthdayUser({ id })
       })
     })
   }
 }
 
 const birthdaySchedulerInit = () => {
-  checkUserBirthday({timezone: null})
+  checkUserBirthday({ timezone: null })
 
   const listTimeZone = moment.tz.names()
   listTimeZone.forEach((timezone) => {

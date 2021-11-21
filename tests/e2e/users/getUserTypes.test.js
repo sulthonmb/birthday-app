@@ -20,17 +20,6 @@ describe('User Types', () => {
     token = res.body.data.token
   })
 
-  it('should success to post a user type', async () => {
-    const res = await request(app)
-      .post('/api/v1/user-types')
-      .set('token', token)
-      .send({
-        name: 'Pegawai'
-      })
-    expect(res.statusCode).toEqual(201)
-    expect(res.body).toHaveProperty('status', 'success')
-  })
-
   it('should success to get all user types', async () => {
     const res = await request(app)
       .get('/api/v1/user-types')
